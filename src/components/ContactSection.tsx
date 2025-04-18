@@ -11,15 +11,15 @@ const ContactSection = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Свяжитесь с нами</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Остались вопросы или нужна консультация? Мы всегда рады помочь!
+            Остались вопросы или хотите сделать заказ? Мы всегда на связи!
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div className="flex items-start gap-4">
-              <div className="bg-eco-light p-3 rounded-full">
-                <Phone className="h-5 w-5 text-eco-primary" />
+              <div className="bg-primary/10 p-3 rounded-full">
+                <Phone className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <h3 className="font-bold mb-1">Телефон</h3>
@@ -29,8 +29,8 @@ const ContactSection = () => {
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="bg-eco-light p-3 rounded-full">
-                <Mail className="h-5 w-5 text-eco-primary" />
+              <div className="bg-primary/10 p-3 rounded-full">
+                <Mail className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <h3 className="font-bold mb-1">Email</h3>
@@ -40,8 +40,8 @@ const ContactSection = () => {
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="bg-eco-light p-3 rounded-full">
-                <MapPin className="h-5 w-5 text-eco-primary" />
+              <div className="bg-primary/10 p-3 rounded-full">
+                <MapPin className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <h3 className="font-bold mb-1">Адрес</h3>
@@ -53,7 +53,7 @@ const ContactSection = () => {
             <div className="aspect-video rounded-lg overflow-hidden">
               <img 
                 src="/placeholder.svg" 
-                alt="Карта" 
+                alt="Карта проезда" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -64,18 +64,13 @@ const ContactSection = () => {
             <form className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="first-name">Имя</Label>
-                  <Input id="first-name" placeholder="Иван" />
+                  <Label htmlFor="name">Имя</Label>
+                  <Input id="name" placeholder="Ваше имя" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="last-name">Фамилия</Label>
-                  <Input id="last-name" placeholder="Иванов" />
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="your@email.ru" />
                 </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="example@mail.ru" />
               </div>
               
               <div className="space-y-2">
@@ -91,7 +86,7 @@ const ContactSection = () => {
               <Button type="submit" className="w-full">Отправить</Button>
               
               <p className="text-xs text-muted-foreground text-center mt-4">
-                Нажимая кнопку "Отправить", вы соглашаетесь с нашей <a href="#" className="underline">политикой конфиденциальности</a>
+                Отправляя форму, вы соглашаетесь с нашей <a href="#" className="underline">политикой конфиденциальности</a>
               </p>
             </form>
           </div>

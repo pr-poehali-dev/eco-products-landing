@@ -1,8 +1,9 @@
-import NavBar from "@/components/NavBar";
-import HeroSection from "@/components/HeroSection";
+import React from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 import ProductsSection from "@/components/ProductsSection";
 import BenefitsSection from "@/components/BenefitsSection";
-import ReviewsSection from "@/components/ReviewsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -10,12 +11,12 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="flex min-h-screen flex-col">
-      <NavBar />
+      <Header />
       <main>
-        <HeroSection />
+        <Hero />
         <ProductsSection />
         <BenefitsSection />
-        <ReviewsSection />
+        <TestimonialsSection />
         <FaqSection />
         <ContactSection />
       </main>
