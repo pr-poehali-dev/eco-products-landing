@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import ProductsSection from "@/components/ProductsSection";
-import BenefitsSection from "@/components/BenefitsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FaqSection from "@/components/FaqSection";
+import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
+import ServicesSection from "@/components/ServicesSection";
+import PortfolioSection from "@/components/PortfolioSection";
+import ProcessSection from "@/components/ProcessSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -12,12 +12,12 @@ const Index = () => {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main>
-        <Hero />
-        <ProductsSection />
-        <BenefitsSection />
-        <TestimonialsSection />
-        <FaqSection />
+      <main className="flex-grow pt-16">
+        <HeroSection />
+        <AboutSection />
+        <ServicesSection />
+        <PortfolioSection />
+        <ProcessSection />
         <ContactSection />
       </main>
       <Footer />

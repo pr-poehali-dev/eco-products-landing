@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Leaf } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Palette } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,22 +9,21 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-md z-50 border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Leaf className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold">ЭкоДом</span>
+          <Palette className="h-6 w-6 text-primary" />
+          <span className="text-xl font-bold">Елена Афанасьева</span>
         </div>
 
         {/* Десктопное меню */}
         <nav className="hidden md:flex items-center space-x-6">
-          <a href="#products" className="text-sm font-medium hover:text-primary transition-colors">Продукты</a>
-          <a href="#benefits" className="text-sm font-medium hover:text-primary transition-colors">Преимущества</a>
-          <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Отзывы</a>
-          <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
+          <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">Обо мне</a>
+          <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">Услуги</a>
+          <a href="#portfolio" className="text-sm font-medium hover:text-primary transition-colors">Портфолио</a>
+          <a href="#process" className="text-sm font-medium hover:text-primary transition-colors">Процесс</a>
           <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
         </nav>
 
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline">Каталог</Button>
-          <Button>Заказать</Button>
+        <div className="hidden md:flex">
+          <Button>Связаться</Button>
         </div>
 
         {/* Мобильное меню */}
@@ -49,33 +48,32 @@ const Header = () => {
         <div className="md:hidden bg-background border-b">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-3">
             <a 
-              href="#products" 
+              href="#about" 
               className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
-            >Продукты</a>
+            >Обо мне</a>
             <a 
-              href="#benefits" 
+              href="#services" 
               className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
-            >Преимущества</a>
+            >Услуги</a>
             <a 
-              href="#testimonials" 
+              href="#portfolio" 
               className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
-            >Отзывы</a>
+            >Портфолио</a>
             <a 
-              href="#faq" 
+              href="#process" 
               className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
-            >FAQ</a>
+            >Процесс</a>
             <a 
               href="#contact" 
               className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >Контакты</a>
-            <div className="flex space-x-4 pt-2">
-              <Button variant="outline" className="flex-1">Каталог</Button>
-              <Button className="flex-1">Заказать</Button>
+            <div className="pt-2">
+              <Button className="w-full">Связаться</Button>
             </div>
           </nav>
         </div>
