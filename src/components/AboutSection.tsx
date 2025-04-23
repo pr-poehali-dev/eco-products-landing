@@ -1,58 +1,63 @@
-import React from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
-const AboutSection: React.FC = () => {
+const AboutSection = () => {
   return (
-    <section id="about" className="py-16 bg-muted/30">
+    <section id="about" className="py-20 bg-secondary/10">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          {/* Image Column */}
-          <div className="w-full md:w-5/12">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className="w-full lg:w-1/2 order-2 lg:order-1">
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg blur-xl opacity-70"></div>
-              <div className="relative rounded-lg overflow-hidden border">
+              <div className="aspect-[4/5] bg-white shadow-xl rounded-lg overflow-hidden">
                 <img
                   src="/placeholder.svg"
-                  alt="Обо мне"
-                  className="w-full aspect-[4/3] object-cover"
+                  alt="Елена - веб-дизайнер"
+                  className="w-full h-full object-cover"
                 />
               </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-lg -z-10"></div>
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-secondary/40 rounded-lg -z-10"></div>
             </div>
           </div>
-
-          {/* Content Column */}
-          <div className="w-full md:w-7/12 space-y-6">
-            <h2 className="text-3xl font-bold">
-              <span className="text-primary">Обо</span> мне
+          
+          <div className="w-full lg:w-1/2 order-1 lg:order-2 space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Обо <span className="text-primary">мне</span>
             </h2>
-            <p className="text-muted-foreground">
-              Я Елена, опытный веб-дизайнер с многолетним стажем работы. Моя цель — создавать не просто красивые сайты, а эффективные инструменты для вашего бизнеса, которые помогут привлечь новых клиентов и укрепить позиции бренда.
+            
+            <p className="text-lg text-gray-700">
+              Я Елена, опытный веб-дизайнер с обширным портфолио успешных проектов. Моя миссия — создавать уникальные дизайны, которые не только эстетически привлекательны, но и эффективно привлекают клиентов и повышают узнаваемость вашего бренда.
             </p>
             
-            <h3 className="text-xl font-semibold pt-2">В работе я использую:</h3>
-            <div className="space-y-3">
-              {[
-                {
-                  title: "Индивидуальный подход",
-                  description: "Проведем личный созвон, на котором детально обсудим ваш запрос и ожидаемый результат."
-                },
-                {
-                  title: "Понятный процесс работы",
-                  description: "Составлю коммерческое предложение, в котором будут закреплены все этапы работы вместе со сроками и стоимостью."
-                },
-                {
-                  title: "Безопасность",
-                  description: "Заключим договор, который обезопасит обе стороны."
-                }
-              ].map((item, index) => (
-                <div key={index} className="flex gap-3">
-                  <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
+            <div className="space-y-4 pt-4">
+              <h3 className="text-xl font-semibold">В работе я использую:</h3>
+              
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-medium">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                    <h4 className="font-semibold">Индивидуальный подход</h4>
+                    <p className="text-gray-600">Проведем личный созвон, на котором детально обсудим ваш запрос и ожидаемый результат.</p>
                   </div>
                 </div>
-              ))}
+                
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold">Понятный процесс работы</h4>
+                    <p className="text-gray-600">Составлю коммерческое предложение, в котором будут закреплены все этапы работы вместе со сроками и стоимостью.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold">Безопасность</h4>
+                    <p className="text-gray-600">Заключим договор, который обезопасит обе стороны.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

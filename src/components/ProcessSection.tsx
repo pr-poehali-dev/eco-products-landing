@@ -1,73 +1,78 @@
-import React from "react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { PhoneCall, FileText, ClipboardCheck, PenTool, Layers, CheckCircle2 } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
-const ProcessSection: React.FC = () => {
+const ProcessSection = () => {
   const steps = [
     {
-      icon: <PhoneCall className="h-8 w-8 text-primary" />,
-      title: "Обсуждение проекта",
-      description: "Проведем детальное обсуждение ваших целей, требований и ожиданий от проекта.",
+      number: "01",
+      title: "Изучение потребностей",
+      description: "Проводим детальную консультацию, где обсуждаем ваши цели, потребности аудитории и конкурентное окружение.",
     },
     {
-      icon: <FileText className="h-8 w-8 text-primary" />,
+      number: "02",
       title: "Коммерческое предложение",
-      description: "Подготовлю коммерческое предложение с указанием сроков, стоимости и этапов работы.",
+      description: "Составляю коммерческое предложение с подробным описанием всех этапов работы, сроков и стоимости.",
     },
     {
-      icon: <ClipboardCheck className="h-8 w-8 text-primary" />,
+      number: "03",
       title: "Заключение договора",
-      description: "Оформим официальный договор, который защитит интересы обеих сторон.",
+      description: "Официально оформляем наше сотрудничество, что обеспечивает безопасность и прозрачность для обеих сторон.",
     },
     {
-      icon: <PenTool className="h-8 w-8 text-primary" />,
-      title: "Разработка дизайна",
-      description: "Создам несколько концепций дизайна на выбор и внесу необходимые корректировки.",
+      number: "04",
+      title: "Прототипирование",
+      description: "Создаю прототипы страниц для визуализации структуры и функциональности будущего сайта.",
     },
     {
-      icon: <Layers className="h-8 w-8 text-primary" />,
-      title: "Финализация проекта",
-      description: "Доработаю выбранный вариант дизайна с учетом всех ваших пожеланий и комментариев.",
+      number: "05",
+      title: "Дизайн",
+      description: "Разрабатываю уникальный дизайн, учитывая ваш бренд, целевую аудиторию и тренды веб-дизайна.",
     },
     {
-      icon: <CheckCircle2 className="h-8 w-8 text-primary" />,
-      title: "Сдача проекта",
-      description: "Передам все необходимые файлы и материалы для дальнейшей работы с проектом.",
-    },
+      number: "06",
+      title: "Правки и финализация",
+      description: "Вношу необходимые корректировки на основе вашей обратной связи и финализирую проект.",
+    }
   ];
 
   return (
-    <section id="process" className="py-16">
+    <section id="process" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4">
-            Как я <span className="text-primary">работаю</span>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Мой <span className="text-primary">процесс</span> работы
           </h2>
-          <p className="text-muted-foreground">
-            Мой процесс работы построен таким образом, чтобы обеспечить максимальную прозрачность, эффективность и качество результата.
+          <p className="text-lg text-gray-600">
+            Я придерживаюсь структурированного подхода к каждому проекту, обеспечивая эффективность и высокое качество результата.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {steps.map((step, index) => (
-            <Card key={index} className="border hover:border-primary/50 transition-colors">
-              <CardHeader className="pb-2">
-                <div className="mb-2">{step.icon}</div>
-                <CardTitle className="flex items-center">
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs mr-2">
-                    {index + 1}
-                  </span>
-                  {step.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{step.description}</p>
-              </CardContent>
-              <CardFooter className="pt-0">
-                <div className={`h-1 w-full ${index < steps.length - 1 ? 'bg-gradient-to-r from-primary to-transparent' : 'bg-primary'}`}></div>
-              </CardFooter>
-            </Card>
-          ))}
+        <div className="relative">
+          {/* Декоративная линия для десктопа */}
+          <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-1 bg-primary/20 -translate-y-1/2 rounded-full"></div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+            {steps.map((step, index) => (
+              <Card 
+                key={index} 
+                className="border border-border/50 hover:border-primary/50 hover:shadow-md transition-all duration-300"
+              >
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-secondary mb-4 relative lg:mb-8">
+                      <span className="text-xl font-bold">{step.number}</span>
+                      {/* Вертикальная линия для мобильных */}
+                      {index < steps.length - 1 && (
+                        <div className="lg:hidden absolute h-16 w-0.5 bg-secondary/70 top-full left-1/2 -translate-x-1/2"></div>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                    <p className="text-gray-600">{step.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

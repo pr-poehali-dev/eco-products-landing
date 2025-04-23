@@ -1,142 +1,81 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { Instagram, Mail, Phone, MessageSquare } from "lucide-react";
+import { Phone, Mail, Instagram, MessageSquare, Heart } from "lucide-react";
 
-const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  
+const Footer = () => {
   return (
-    <footer className="bg-muted/40 border-t">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand / About */}
-          <div>
-            <Link to="/" className="text-2xl font-bold text-primary mb-4 inline-block">
-              Елена<span className="text-secondary">.Дизайн</span>
+    <footer className="bg-secondary/20 pt-16 pb-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Логотип и краткое описание */}
+          <div className="space-y-4">
+            <Link to="/" className="text-2xl font-playfair font-bold">
+              Елена<span className="text-primary">.</span>Дизайн
             </Link>
-            <p className="text-muted-foreground mb-4">
-              Создаю уникальные веб-сайты, которые привлекают клиентов и повышают узнаваемость вашего бренда.
+            <p className="text-gray-600 max-w-xs">
+              Создаю уникальные веб-дизайны, которые привлекают новых клиентов и повышают узнаваемость вашего бренда.
             </p>
-            <div className="flex space-x-3">
-              <a
-                href="https://www.instagram.com/elena_art_desing/profilecard/?igsh=cWNraGlsMW5uN2My"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-background hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
+          </div>
+          
+          {/* Навигация */}
+          <div>
+            <h4 className="text-lg font-bold mb-4">Навигация</h4>
+            <nav className="space-y-3">
+              <a href="#about" className="block text-gray-600 hover:text-primary transition-colors">
+                Обо мне
               </a>
-              <a
-                href="mailto:elena0904.elena@yandex.ru"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-background hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
+              <a href="#services" className="block text-gray-600 hover:text-primary transition-colors">
+                Услуги
               </a>
-              <a
-                href="tel:+79202715633"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-background hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Phone"
-              >
+              <a href="#portfolio" className="block text-gray-600 hover:text-primary transition-colors">
+                Портфолио
+              </a>
+              <a href="#process" className="block text-gray-600 hover:text-primary transition-colors">
+                Процесс
+              </a>
+              <a href="#testimonials" className="block text-gray-600 hover:text-primary transition-colors">
+                Отзывы
+              </a>
+              <a href="#contact" className="block text-gray-600 hover:text-primary transition-colors">
+                Контакты
+              </a>
+            </nav>
+          </div>
+          
+          {/* Контакты */}
+          <div>
+            <h4 className="text-lg font-bold mb-4">Контакты</h4>
+            <div className="space-y-3">
+              <a href="tel:+79202715633" className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
                 <Phone className="h-5 w-5" />
+                <span>+7 (920) 271-56-33</span>
               </a>
-              <a
-                href="https://t.me/afnelena"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-background hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Telegram"
-              >
+              <a href="mailto:elena0904.elena@yandex.ru" className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
+                <Mail className="h-5 w-5" />
+                <span>elena0904.elena@yandex.ru</span>
+              </a>
+              <a href="https://t.me/afnelena" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
                 <MessageSquare className="h-5 w-5" />
+                <span>@afnelena</span>
+              </a>
+              <a href="https://www.instagram.com/elena_art_desing/profilecard/?igsh=cWNraGlsMW5uN2My" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
+                <Instagram className="h-5 w-5" />
+                <span>@elena_art_desing</span>
               </a>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Навигация</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
-                  Обо мне
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Услуги
-                </a>
-              </li>
-              <li>
-                <a href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors">
-                  Портфолио
-                </a>
-              </li>
-              <li>
-                <a href="#process" className="text-muted-foreground hover:text-primary transition-colors">
-                  Процесс работы
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" className="text-muted-foreground hover:text-primary transition-colors">
-                  Отзывы
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
-                  Контакты
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Контакты</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <Phone className="h-5 w-5 text-primary mr-2 shrink-0 mt-1" />
-                <span>
-                  <a href="tel:+79202715633" className="hover:text-primary transition-colors">
-                    +7 (920) 271-56-33
-                  </a>
-                </span>
-              </li>
-              <li className="flex items-start">
-                <MessageSquare className="h-5 w-5 text-primary mr-2 shrink-0 mt-1" />
-                <span>
-                  <a href="https://t.me/afnelena" className="hover:text-primary transition-colors">
-                    @afnelena
-                  </a>
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Mail className="h-5 w-5 text-primary mr-2 shrink-0 mt-1" />
-                <span>
-                  <a href="mailto:elena0904.elena@yandex.ru" className="hover:text-primary transition-colors">
-                    elena0904.elena@yandex.ru
-                  </a>
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Instagram className="h-5 w-5 text-primary mr-2 shrink-0 mt-1" />
-                <span>
-                  <a 
-                    href="https://www.instagram.com/elena_art_desing/profilecard/?igsh=cWNraGlsMW5uN2My" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors"
-                  >
-                    elena_art_desing
-                  </a>
-                </span>
-              </li>
-            </ul>
-          </div>
         </div>
-
-        <div className="border-t mt-12 pt-6 text-center text-muted-foreground">
-          <p>© {currentYear} Елена.Дизайн. Все права защищены.</p>
+        
+        {/* Разделитель */}
+        <div className="border-t border-gray-200 pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <p className="text-gray-600 text-sm mb-4 sm:mb-0">
+              © {new Date().getFullYear()} Елена.Дизайн. Все права защищены.
+            </p>
+            <p className="text-gray-600 text-sm flex items-center">
+              Создано с <Heart className="h-4 w-4 text-primary mx-1 fill-primary" /> 
+              <a href="#" className="hover:text-primary transition-colors">Еленой</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

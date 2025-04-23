@@ -1,64 +1,68 @@
-import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { PenTool, Globe, ShoppingBag, Layout, Layers, Compass } from "lucide-react";
+import {
+  Paintbrush,
+  LayoutGrid,
+  ShoppingBag,
+  Smartphone,
+  Zap,
+  RefreshCw
+} from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-const ServicesSection: React.FC = () => {
+const ServicesSection = () => {
   const services = [
     {
-      icon: <PenTool className="h-10 w-10 text-primary" />,
-      title: "Дизайн сайтов",
-      description: "Создание современных и уникальных дизайнов для вашего веб-сайта с учетом ваших потребностей и целевой аудитории."
+      icon: <Paintbrush className="h-10 w-10 text-primary" />,
+      title: "Веб-дизайн",
+      description: "Создание современных, функциональных и эстетически привлекательных веб-сайтов с учетом ваших бизнес-целей."
     },
     {
-      icon: <Globe className="h-10 w-10 text-primary" />,
-      title: "Разработка лендингов",
-      description: "Разработка эффективных лендингов, которые конвертируют посетителей в клиентов."
+      icon: <LayoutGrid className="h-10 w-10 text-primary" />,
+      title: "Дизайн интерфейсов",
+      description: "Разработка интуитивно понятных и удобных пользовательских интерфейсов для веб-сайтов и приложений."
     },
     {
       icon: <ShoppingBag className="h-10 w-10 text-primary" />,
-      title: "Интернет-магазины",
-      description: "Дизайн функциональных и привлекательных интернет-магазинов с удобным пользовательским интерфейсом."
+      title: "Дизайн интернет-магазинов",
+      description: "Создание эффективных и красивых интернет-магазинов, мотивирующих посетителей совершать покупки."
     },
     {
-      icon: <Layout className="h-10 w-10 text-primary" />,
-      title: "Редизайн сайтов",
-      description: "Обновление устаревших сайтов с сохранением фирменного стиля и улучшением пользовательского опыта."
+      icon: <Smartphone className="h-10 w-10 text-primary" />,
+      title: "Адаптивный дизайн",
+      description: "Разработка сайтов, которые отлично выглядят и функционируют на всех устройствах, от компьютеров до смартфонов."
     },
     {
-      icon: <Layers className="h-10 w-10 text-primary" />,
-      title: "Фирменный стиль",
-      description: "Разработка уникального фирменного стиля, который отражает ценности и характер вашего бренда."
+      icon: <Zap className="h-10 w-10 text-primary" />,
+      title: "Лендинги",
+      description: "Создание высококонверсионных целевых страниц, оптимизированных для достижения конкретных бизнес-задач."
     },
     {
-      icon: <Compass className="h-10 w-10 text-primary" />,
-      title: "UI/UX Дизайн",
-      description: "Проектирование удобных и интуитивно понятных пользовательских интерфейсов с фокусом на пользовательском опыте."
+      icon: <RefreshCw className="h-10 w-10 text-primary" />,
+      title: "Редизайн",
+      description: "Обновление и улучшение дизайна существующих веб-сайтов для повышения их эффективности и привлекательности."
     }
   ];
 
   return (
-    <section id="services" className="py-16">
+    <section id="services" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Мои <span className="text-primary">услуги</span>
           </h2>
-          <p className="text-muted-foreground">
-            Предлагаю широкий спектр услуг в области веб-дизайна и разработки, направленных на создание эффективных решений для вашего бизнеса.
+          <p className="text-lg text-gray-600">
+            Я предлагаю полный спектр услуг по веб-дизайну, чтобы помочь вашему бизнесу выделиться в онлайн-пространстве и достичь поставленных целей.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="border hover:shadow-md transition-shadow group">
+            <Card key={index} className="border border-border/50 hover:border-primary/50 hover:shadow-md transition-all duration-300">
               <CardHeader>
-                <div className="mb-2 group-hover:text-primary transition-colors">
-                  {service.icon}
-                </div>
-                <CardTitle>{service.title}</CardTitle>
+                <div className="mb-4">{service.icon}</div>
+                <CardTitle className="text-xl">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription>{service.description}</CardDescription>
+                <p className="text-gray-600">{service.description}</p>
               </CardContent>
             </Card>
           ))}

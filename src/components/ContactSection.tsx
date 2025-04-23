@@ -1,147 +1,184 @@
-import React from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, MessageSquare, Instagram } from "lucide-react";
+import { Phone, Mail, MessageSquare, Instagram, ArrowRight } from "lucide-react";
 
-const ContactSection: React.FC = () => {
-  const contactInfo = [
-    {
-      icon: <Phone className="h-5 w-5 text-primary" />,
-      title: "Телефон",
-      value: "+7 (920) 271-56-33",
-      link: "tel:+79202715633",
-    },
-    {
-      icon: <MessageSquare className="h-5 w-5 text-primary" />,
-      title: "Telegram",
-      value: "@afnelena",
-      link: "https://t.me/afnelena",
-    },
-    {
-      icon: <Instagram className="h-5 w-5 text-primary" />,
-      title: "Instagram",
-      value: "elena_art_desing",
-      link: "https://www.instagram.com/elena_art_desing/profilecard/?igsh=cWNraGlsMW5uN2My",
-    },
-    {
-      icon: <Mail className="h-5 w-5 text-primary" />,
-      title: "Email",
-      value: "elena0904.elena@yandex.ru",
-      link: "mailto:elena0904.elena@yandex.ru",
-    },
-  ];
+const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Здесь будет логика отправки формы
+    console.log(formData);
+    alert("Сообщение отправлено! Скоро я свяжусь с вами.");
+    setFormData({ name: "", email: "", phone: "", message: "" });
+  };
 
   return (
-    <section id="contact" className="py-16">
+    <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Свяжитесь <span className="text-primary">со мной</span>
           </h2>
-          <p className="text-muted-foreground">
-            Готовы обсудить ваш проект? Заполните форму ниже или используйте любой из контактов для связи со мной.
+          <p className="text-lg text-gray-600">
+            Буду рада обсудить детали вашего проекта и ответить на все вопросы. Заполните форму, и я свяжусь с вами в ближайшее время.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Contact Form */}
-          <div className="w-full lg:w-7/12">
-            <Card>
-              <CardContent className="p-6">
-                <form className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Ваше имя
-                      </label>
-                      <Input
-                        id="name"
-                        placeholder="Введите ваше имя"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Введите ваш email"
-                      />
-                    </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+          {/* Контактная информация */}
+          <div className="space-y-8">
+            <div className="bg-secondary/10 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold mb-6">Контактная информация</h3>
+              
+              <div className="space-y-6">
+                {/* Телефон */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full text-primary">
+                    <Phone className="h-6 w-6" />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium">
-                      Тема
-                    </label>
-                    <Input
-                      id="subject"
-                      placeholder="Тема сообщения"
-                    />
+                  <div>
+                    <h4 className="font-medium text-lg">Телефон</h4>
+                    <a href="tel:+79202715633" className="text-gray-700 hover:text-primary transition-colors">
+                      +7 (920) 271-56-33
+                    </a>
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">
-                      Сообщение
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder="Расскажите о вашем проекте..."
-                      rows={5}
-                    />
+                </div>
+                
+                {/* Email */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full text-primary">
+                    <Mail className="h-6 w-6" />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Отправить сообщение
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Contact Information */}
-          <div className="w-full lg:w-5/12 space-y-4">
-            <div className="bg-muted/30 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Контактная информация</h3>
-              <div className="space-y-4">
-                {contactInfo.map((contact, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="bg-primary/10 p-2 rounded-md">
-                      {contact.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-medium">{contact.title}</h4>
-                      <a
-                        href={contact.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {contact.value}
-                      </a>
-                    </div>
+                  <div>
+                    <h4 className="font-medium text-lg">Email</h4>
+                    <a href="mailto:elena0904.elena@yandex.ru" className="text-gray-700 hover:text-primary transition-colors">
+                      elena0904.elena@yandex.ru
+                    </a>
                   </div>
-                ))}
+                </div>
+                
+                {/* Telegram */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full text-primary">
+                    <MessageSquare className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-lg">Telegram</h4>
+                    <a href="https://t.me/afnelena" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-primary transition-colors">
+                      @afnelena
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Instagram */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full text-primary">
+                    <Instagram className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-lg">Instagram</h4>
+                    <a href="https://www.instagram.com/elena_art_desing/profilecard/?igsh=cWNraGlsMW5uN2My" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-primary transition-colors">
+                      @elena_art_desing
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div className="bg-muted/30 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Рабочее время</h3>
-              <ul className="space-y-2">
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground">Понедельник - Пятница:</span>
-                  <span>10:00 - 19:00</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground">Суббота:</span>
-                  <span>11:00 - 17:00</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-muted-foreground">Воскресенье:</span>
-                  <span>Выходной</span>
-                </li>
-              </ul>
+            
+            {/* Призыв к действию */}
+            <div className="bg-primary text-white p-8 rounded-lg">
+              <h3 className="text-xl font-bold mb-4">Готовы начать проект?</h3>
+              <p className="mb-6">Давайте обсудим вашу идею и создадим уникальный дизайн, который привлечет новых клиентов.</p>
+              <Button variant="outline" className="text-white border-white hover:bg-white hover:text-primary">
+                Написать в Telegram
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
+          </div>
+          
+          {/* Форма обратной связи */}
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold mb-6">Отправьте сообщение</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="name" className="block font-medium">
+                  Ваше имя
+                </label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Введите ваше имя"
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="email" className="block font-medium">
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Введите ваш email"
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="phone" className="block font-medium">
+                  Телефон
+                </label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Введите ваш телефон"
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="message" className="block font-medium">
+                  Сообщение
+                </label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  placeholder="Расскажите о вашем проекте"
+                  rows={4}
+                  className="w-full"
+                />
+              </div>
+              
+              <Button type="submit" className="w-full">
+                Отправить сообщение
+              </Button>
+            </form>
           </div>
         </div>
       </div>
