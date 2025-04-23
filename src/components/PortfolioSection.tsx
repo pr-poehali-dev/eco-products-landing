@@ -1,92 +1,139 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const PortfolioSection = () => {
-  const portfolioItems = [
+const PortfolioSection: React.FC = () => {
+  const categories = [
+    { id: "all", label: "Все проекты" },
+    { id: "web", label: "Веб-сайты" },
+    { id: "landing", label: "Лендинги" },
+    { id: "ecommerce", label: "Интернет-магазины" },
+    { id: "branding", label: "Фирменный стиль" },
+  ];
+  
+  const projects = [
     {
       id: 1,
-      title: "Интернет-магазин органической косметики",
-      description: "Дизайн современного интернет-магазина с удобной навигацией и адаптивной версткой",
+      title: "Редизайн сайта ресторана 'Аврора'",
+      category: ["web"],
       image: "/placeholder.svg",
-      tags: ["E-commerce", "UX/UI", "Адаптивный дизайн"],
-      link: "https://pin.it/6Ew5eP29Z"
+      link: "https://behance.net"
     },
     {
       id: 2,
-      title: "Корпоративный сайт IT-компании",
-      description: "Минималистичный дизайн с акцентом на контент и удобство использования",
+      title: "Интернет-магазин 'GreenLife'",
+      category: ["ecommerce", "web"],
       image: "/placeholder.svg",
-      tags: ["Корпоративный сайт", "Минимализм", "Анимации"],
-      link: "https://www.behance.net/d9af5"
+      link: "https://behance.net"
     },
     {
       id: 3,
-      title: "Лендинг образовательного курса",
-      description: "Яркий и привлекательный дизайн, ориентированный на конверсию",
+      title: "Лендинг для IT-стартапа Neurotech",
+      category: ["landing", "web"],
       image: "/placeholder.svg",
-      tags: ["Лендинг", "Конверсия", "Микроанимации"],
-      link: "https://pin.it/6Ew5eP29Z"
-    }
+      link: "https://pinterest.com"
+    },
+    {
+      id: 4,
+      title: "Фирменный стиль для кофейни 'Утро'",
+      category: ["branding"],
+      image: "/placeholder.svg",
+      link: "https://behance.net"
+    },
+    {
+      id: 5,
+      title: "Сайт юридической компании 'LegalPro'",
+      category: ["web"],
+      image: "/placeholder.svg",
+      link: "https://pinterest.com"
+    },
+    {
+      id: 6,
+      title: "Лендинг курса по веб-дизайну",
+      category: ["landing", "web"],
+      image: "/placeholder.svg",
+      link: "https://behance.net"
+    },
   ];
 
   return (
-    <section id="portfolio" className="py-16 md:py-24 bg-muted/30">
-      <div className="container px-4 mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Мои работы</h2>
-          <p className="text-lg text-muted-foreground">
-            Познакомьтесь с некоторыми из моих последних проектов. 
-            Каждый проект уникален и создан с учетом потребностей клиента.
+    <section id="portfolio" className="py-16 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="text-3xl font-bold mb-4">
+            Мои <span className="text-primary">работы</span>
+          </h2>
+          <p className="text-muted-foreground">
+            Здесь представлены некоторые из моих последних проектов. Посмотрите на них, чтобы оценить мой стиль и подход к дизайну.
           </p>
+          <div className="flex justify-center gap-4 mt-6">
+            <Button variant="outline" asChild>
+              <a href="https://pin.it/6Ew5eP29Z" target="_blank" rel="noopener noreferrer">
+                Pinterest
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href="https://www.behance.net/d9af5" target="_blank" rel="noopener noreferrer">
+                Behance
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioItems.map((item) => (
-            <div key={item.id} className="group bg-card rounded-lg overflow-hidden border hover:shadow-md transition-shadow">
-              <div className="aspect-[16/10] overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                />
+        <Tabs defaultValue="all" className="w-full">
+          <div className="flex justify-center mb-8 overflow-x-auto">
+            <TabsList className="h-auto p-1 bg-background border">
+              {categories.map(category => (
+                <TabsTrigger 
+                  key={category.id}
+                  value={category.id}
+                  className="px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  {category.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+
+          {categories.map(category => (
+            <TabsContent key={category.id} value={category.id} className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects
+                  .filter(project => 
+                    category.id === "all" || project.category.includes(category.id)
+                  )
+                  .map(project => (
+                    <Card key={project.id} className="overflow-hidden border hover:shadow-lg transition-all group">
+                      <CardContent className="p-0">
+                        <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="block relative"
+                        >
+                          <div className="aspect-[3/2] overflow-hidden">
+                            <img 
+                              src={project.image} 
+                              alt={project.title} 
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <h3 className="text-white font-medium">{project.title}</h3>
+                          </div>
+                        </a>
+                      </CardContent>
+                    </Card>
+                  ))
+                }
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-medium mb-2">{item.title}</h3>
-                <p className="text-muted-foreground mb-4">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {item.tags.map((tag, i) => (
-                    <span 
-                      key={i} 
-                      className="text-xs bg-muted rounded-full px-3 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <Button variant="outline" size="sm" asChild className="gap-2">
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    Посмотреть <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                </Button>
-              </div>
-            </div>
+            </TabsContent>
           ))}
-        </div>
-
-        <div className="flex justify-center mt-12">
-          <Button asChild>
-            <a 
-              href="https://www.behance.net/d9af5" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="gap-2"
-            >
-              Больше проектов на Behance <ExternalLink className="h-4 w-4" />
-            </a>
-          </Button>
-        </div>
+        </Tabs>
       </div>
     </section>
   );

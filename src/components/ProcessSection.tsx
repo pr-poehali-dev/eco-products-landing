@@ -1,70 +1,72 @@
-import { CalendarDays, FileText, LayoutPanelLeft, MessagesSquare, Rocket } from "lucide-react";
+import React from "react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { PhoneCall, FileText, ClipboardCheck, PenTool, Layers, CheckCircle2 } from "lucide-react";
 
-const ProcessSection = () => {
+const ProcessSection: React.FC = () => {
   const steps = [
     {
-      id: 1,
-      title: "Обсуждение и брифинг",
-      description: "Проведение созвона для детального обсуждения вашего проекта, целей и ожиданий.",
-      icon: <MessagesSquare className="h-7 w-7 text-primary" />
+      icon: <PhoneCall className="h-8 w-8 text-primary" />,
+      title: "Обсуждение проекта",
+      description: "Проведем детальное обсуждение ваших целей, требований и ожиданий от проекта.",
     },
     {
-      id: 2,
+      icon: <FileText className="h-8 w-8 text-primary" />,
       title: "Коммерческое предложение",
-      description: "Подготовка и согласование детального предложения, включающего сроки и стоимость.",
-      icon: <FileText className="h-7 w-7 text-primary" />
+      description: "Подготовлю коммерческое предложение с указанием сроков, стоимости и этапов работы.",
     },
     {
-      id: 3,
+      icon: <ClipboardCheck className="h-8 w-8 text-primary" />,
       title: "Заключение договора",
-      description: "Официальное оформление нашего сотрудничества для обеспечения безопасности обеих сторон.",
-      icon: <CalendarDays className="h-7 w-7 text-primary" />
+      description: "Оформим официальный договор, который защитит интересы обеих сторон.",
     },
     {
-      id: 4,
+      icon: <PenTool className="h-8 w-8 text-primary" />,
       title: "Разработка дизайна",
-      description: "Создание прототипов и дизайн-макетов с учетом ваших пожеланий и современных тенденций.",
-      icon: <LayoutPanelLeft className="h-7 w-7 text-primary" />
+      description: "Создам несколько концепций дизайна на выбор и внесу необходимые корректировки.",
     },
     {
-      id: 5,
-      title: "Запуск проекта",
-      description: "Финальные доработки, подготовка всех необходимых материалов и передача готового проекта.",
-      icon: <Rocket className="h-7 w-7 text-primary" />
-    }
+      icon: <Layers className="h-8 w-8 text-primary" />,
+      title: "Финализация проекта",
+      description: "Доработаю выбранный вариант дизайна с учетом всех ваших пожеланий и комментариев.",
+    },
+    {
+      icon: <CheckCircle2 className="h-8 w-8 text-primary" />,
+      title: "Сдача проекта",
+      description: "Передам все необходимые файлы и материалы для дальнейшей работы с проектом.",
+    },
   ];
 
   return (
-    <section id="process" className="py-16 md:py-24">
-      <div className="container px-4 mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Процесс работы</h2>
-          <p className="text-lg text-muted-foreground">
-            Я придерживаюсь четкого процесса работы, который обеспечивает 
-            эффективное сотрудничество и высокое качество результата.
+    <section id="process" className="py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="text-3xl font-bold mb-4">
+            Как я <span className="text-primary">работаю</span>
+          </h2>
+          <p className="text-muted-foreground">
+            Мой процесс работы построен таким образом, чтобы обеспечить максимальную прозрачность, эффективность и качество результата.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {steps.map((step, index) => (
-            <div key={step.id} className="flex flex-col md:flex-row gap-6 mb-8 items-start">
-              <div className="flex items-center md:flex-col gap-4 md:gap-2">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  {step.icon}
-                </div>
-                <div className={`hidden md:block w-1 ${index === steps.length - 1 ? 'h-0' : 'h-24'} bg-primary/20 mx-auto my-2`}></div>
-              </div>
-              
-              <div className="bg-card border rounded-lg p-6 shadow-sm flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-primary/10 text-primary font-medium text-sm rounded-full px-3 py-1">
-                    Шаг {step.id}
+            <Card key={index} className="border hover:border-primary/50 transition-colors">
+              <CardHeader className="pb-2">
+                <div className="mb-2">{step.icon}</div>
+                <CardTitle className="flex items-center">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs mr-2">
+                    {index + 1}
                   </span>
-                </div>
-                <h3 className="text-xl font-medium mb-2">{step.title}</h3>
+                  {step.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <p className="text-muted-foreground">{step.description}</p>
-              </div>
-            </div>
+              </CardContent>
+              <CardFooter className="pt-0">
+                <div className={`h-1 w-full ${index < steps.length - 1 ? 'bg-gradient-to-r from-primary to-transparent' : 'bg-primary'}`}></div>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </div>

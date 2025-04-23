@@ -1,49 +1,59 @@
-import { Shield, Users, Zap } from "lucide-react";
+import React from "react";
+import { CheckCircle } from "lucide-react";
 
-const AboutSection = () => {
+const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-muted/30">
-      <div className="container px-4 mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Обо мне</h2>
-          <p className="text-lg text-muted-foreground">
-            Я профессиональный веб-дизайнер, специализирующийся на создании 
-            современных и функциональных сайтов, которые помогают бизнесу расти.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-card rounded-lg p-6 flex flex-col items-center text-center shadow-sm">
-            <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Users className="h-6 w-6 text-primary" />
+    <section id="about" className="py-16 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          {/* Image Column */}
+          <div className="w-full md:w-5/12">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg blur-xl opacity-70"></div>
+              <div className="relative rounded-lg overflow-hidden border">
+                <img
+                  src="/placeholder.svg"
+                  alt="Обо мне"
+                  className="w-full aspect-[4/3] object-cover"
+                />
+              </div>
             </div>
-            <h3 className="text-xl font-medium mb-2">Индивидуальный подход</h3>
-            <p className="text-muted-foreground">
-              Проведем личный созвон, на котором детально обсудим ваш запрос и 
-              ожидаемый результат. Каждый проект уникален для меня.
-            </p>
           </div>
 
-          <div className="bg-card rounded-lg p-6 flex flex-col items-center text-center shadow-sm">
-            <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Zap className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="text-xl font-medium mb-2">Понятный процесс</h3>
+          {/* Content Column */}
+          <div className="w-full md:w-7/12 space-y-6">
+            <h2 className="text-3xl font-bold">
+              <span className="text-primary">Обо</span> мне
+            </h2>
             <p className="text-muted-foreground">
-              Составлю коммерческое предложение, в котором будут закреплены все 
-              этапы работы вместе со сроками и стоимостью.
+              Я Елена, опытный веб-дизайнер с многолетним стажем работы. Моя цель — создавать не просто красивые сайты, а эффективные инструменты для вашего бизнеса, которые помогут привлечь новых клиентов и укрепить позиции бренда.
             </p>
-          </div>
-
-          <div className="bg-card rounded-lg p-6 flex flex-col items-center text-center shadow-sm">
-            <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Shield className="h-6 w-6 text-primary" />
+            
+            <h3 className="text-xl font-semibold pt-2">В работе я использую:</h3>
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Индивидуальный подход",
+                  description: "Проведем личный созвон, на котором детально обсудим ваш запрос и ожидаемый результат."
+                },
+                {
+                  title: "Понятный процесс работы",
+                  description: "Составлю коммерческое предложение, в котором будут закреплены все этапы работы вместе со сроками и стоимостью."
+                },
+                {
+                  title: "Безопасность",
+                  description: "Заключим договор, который обезопасит обе стороны."
+                }
+              ].map((item, index) => (
+                <div key={index} className="flex gap-3">
+                  <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <h3 className="text-xl font-medium mb-2">Безопасность</h3>
-            <p className="text-muted-foreground">
-              Заключим договор, который обезопасит обе стороны. Ясные условия 
-              сотрудничества и гарантия качества.
-            </p>
           </div>
         </div>
       </div>

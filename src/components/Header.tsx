@@ -1,84 +1,83 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Palette } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <header className="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-md z-50 border-b">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Palette className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold">Елена Афанасьева</span>
-        </div>
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-        {/* Десктопное меню */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">Обо мне</a>
-          <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">Услуги</a>
-          <a href="#portfolio" className="text-sm font-medium hover:text-primary transition-colors">Портфолио</a>
-          <a href="#process" className="text-sm font-medium hover:text-primary transition-colors">Процесс</a>
-          <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold text-primary">
+          Елена<span className="text-secondary">.Дизайн</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <NavLinks />
+          <Button>Связаться</Button>
         </nav>
 
-        <div className="hidden md:flex">
-          <Button>Связаться</Button>
-        </div>
-
-        {/* Мобильное меню */}
-        <button 
-          className="md:hidden" 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        {/* Mobile Navigation Toggle */}
+        <button
+          className="md:hidden p-2 focus:outline-none"
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
         >
-          {isMenuOpen ? (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Мобильное меню выпадающее */}
+      {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-background border-b">
-          <nav className="container mx-auto px-4 py-4 flex flex-col space-y-3">
-            <a 
-              href="#about" 
-              className="text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >Обо мне</a>
-            <a 
-              href="#services" 
-              className="text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >Услуги</a>
-            <a 
-              href="#portfolio" 
-              className="text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >Портфолио</a>
-            <a 
-              href="#process" 
-              className="text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >Процесс</a>
-            <a 
-              href="#contact" 
-              className="text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >Контакты</a>
-            <div className="pt-2">
-              <Button className="w-full">Связаться</Button>
-            </div>
-          </nav>
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b shadow-lg animate-fade-in">
+          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <NavLinks mobile onClick={toggleMenu} />
+            <Button className="w-full">Связаться</Button>
+          </div>
         </div>
       )}
     </header>
+  );
+};
+
+interface NavLinksProps {
+  mobile?: boolean;
+  onClick?: () => void;
+}
+
+const NavLinks: React.FC<NavLinksProps> = ({ mobile, onClick }) => {
+  const baseClassName = mobile
+    ? "block py-2 hover:text-primary transition-colors"
+    : "hover:text-primary transition-colors";
+
+  const links = [
+    { href: "#about", label: "Обо мне" },
+    { href: "#services", label: "Услуги" },
+    { href: "#portfolio", label: "Портфолио" },
+    { href: "#process", label: "Процесс" },
+    { href: "#testimonials", label: "Отзывы" },
+    { href: "#contact", label: "Контакты" },
+  ];
+
+  return (
+    <>
+      {links.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          className={baseClassName}
+          onClick={onClick}
+        >
+          {link.label}
+        </a>
+      ))}
+    </>
   );
 };
 
