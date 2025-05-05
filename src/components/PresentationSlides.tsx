@@ -27,23 +27,25 @@ const PresentationSlides = () => {
     <div className="relative">
       {slides[currentSlide]}
       
-      {/* Navigation */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
+      {/* Navigation controls */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-6">
         <button
           onClick={goToPrevSlide}
-          className="bg-indigo-900 text-white p-2 rounded-full"
+          className="bg-white text-[#2a0c72] p-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
           aria-label="Предыдущий слайд"
         >
           <ChevronLeft size={24} />
         </button>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {Array.from({ length: totalSlides }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full ${
-                currentSlide === index ? "bg-indigo-900" : "bg-indigo-300"
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentSlide === index 
+                  ? 'bg-[#6fc2b0] w-6' 
+                  : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Перейти к слайду ${index + 1}`}
             />
@@ -52,7 +54,7 @@ const PresentationSlides = () => {
         
         <button
           onClick={goToNextSlide}
-          className="bg-indigo-900 text-white p-2 rounded-full"
+          className="bg-white text-[#2a0c72] p-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
           aria-label="Следующий слайд"
         >
           <ChevronRight size={24} />
