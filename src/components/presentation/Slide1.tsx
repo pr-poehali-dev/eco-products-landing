@@ -1,53 +1,52 @@
 
 import React from "react";
-import BulletPoint from "./BulletPoint";
-import SlideContainer from "./SlideContainer";
-import SlideContent from "./SlideContent";
-import SlideHeader from "./SlideHeader";
-
-const bulletPoints = [
-  "подтверждённый product-market fit.",
-  "soft-коммитменты от лабораторий на закупку реагентов",
-  "предзаказ на разработку уникального нутрицевтика для онкологии, стоимость одной рецептуры 20 млн рублей."
-];
 
 const Slide1 = () => {
   return (
-    <SlideContainer>
-      <SlideHeader 
-        title="ГИПОТЕЗА ПОДТВЕРЖДЕНА:" 
-        subtitle="РЫНОК ГОТОВ ПЛАТИТЬ" 
-      />
-      
-      <SlideContent>
-        <div className="flex flex-col md:flex-row gap-8 items-center">
-          <div className="md:w-1/2">
+    <div className="min-h-screen bg-gray-50 p-8 flex items-center justify-center">
+      <div className="w-full max-w-6xl mx-auto bg-gray-50 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
             <img 
-              src="https://cdn.poehali.dev/files/dc812029-b9f3-4f1d-a9d8-8a6f996727a0.jpeg" 
+              src="https://cdn.poehali.dev/files/50b87188-a8b7-43b1-af5a-e9635d7619a9.jpg" 
               alt="Молекулярная структура" 
-              className="w-full h-auto max-w-md mx-auto"
+              className="w-full h-auto rounded"
             />
           </div>
           
-          <div className="md:w-1/2 space-y-6">
-            <p className="text-lg text-indigo-950">
+          <div className="space-y-6">
+            <h1 className="text-3xl md:text-5xl font-bold text-indigo-900 leading-tight">
+              ГИПОТЕЗА ПОДТВЕРЖДЕНА:
+              <br />
+              РЫНОК ГОТОВ ПЛАТИТЬ
+            </h1>
+            
+            <p className="text-lg text-indigo-900">
               Мы глубоко понимаем свой продукт, рынок и целевую аудиторию.
             </p>
             
             <div className="space-y-4">
-              {bulletPoints.map((point, index) => (
-                <BulletPoint key={index} text={point} />
-              ))}
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-blue-200 flex-shrink-0 mt-1 opacity-80"></div>
+                <p className="text-indigo-900">подтверждённый product-market fit.</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-blue-200 flex-shrink-0 mt-1 opacity-80"></div>
+                <p className="text-indigo-900">soft-коммитменты от лабораторий на закупку реагентов</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-blue-200 flex-shrink-0 mt-1 opacity-80"></div>
+                <p className="text-indigo-900">предзаказ на разработку уникального нутрицевтика для онкологии, стоимость одной рецептуры 20 млн рублей.</p>
+              </div>
             </div>
             
-            <p className="text-indigo-950 mt-6">
-              Наш научный фокус — создание передовых нутрицевтиков в сфере клинического и 
-              функционального питания, не имеющих аналогов в мире.
+            <p className="text-indigo-900 mt-6">
+              Наш научный фокус — создание передовых нутрицевтиков в сфере клинического и функционального питания, не имеющих аналогов в мире.
             </p>
           </div>
         </div>
-      </SlideContent>
-    </SlideContainer>
+      </div>
+    </div>
   );
 };
 
