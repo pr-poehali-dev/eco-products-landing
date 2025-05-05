@@ -23,6 +23,20 @@ const PresentationSlides = () => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
   
+  // Keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        goToNextSlide();
+      } else if (e.key === "ArrowLeft") {
+        goToPrevSlide();
+      }
+    };
+    
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+  
   return (
     <div className="relative">
       {slides[currentSlide]}
@@ -31,7 +45,7 @@ const PresentationSlides = () => {
       <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-6">
         <button
           onClick={goToPrevSlide}
-          className="bg-white text-[#2a0c72] p-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+          className="bg-white text-[#212A44] p-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
           aria-label="Предыдущий слайд"
         >
           <ChevronLeft size={24} />
@@ -44,7 +58,7 @@ const PresentationSlides = () => {
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all ${
                 currentSlide === index 
-                  ? 'bg-[#6fc2b0] w-6' 
+                  ? 'bg-[#7269ef] w-6' 
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Перейти к слайду ${index + 1}`}
@@ -54,7 +68,7 @@ const PresentationSlides = () => {
         
         <button
           onClick={goToNextSlide}
-          className="bg-white text-[#2a0c72] p-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+          className="bg-white text-[#212A44] p-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
           aria-label="Следующий слайд"
         >
           <ChevronRight size={24} />
